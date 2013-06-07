@@ -617,8 +617,8 @@ int qspArrayPos(QSP_CHAR *varName, QSPVariant *val, int ind, QSP_BOOL isRegExp)
 {
 	int num, count;
 	QSPVar *var;
-	QSP_CHAR *str;
-	regex_t *regExp;
+	QSP_CHAR *str = 0;
+	regex_t *regExp = 0;
 	QSP_BOOL isString;
 	if (!(var = qspVarReferenceWithType(varName, QSP_FALSE, &isString))) return -1;
 	if (qspConvertVariantTo(val, isRegExp || isString))
@@ -762,7 +762,7 @@ static void qspSetVarValue(QSP_CHAR *name, QSPVariant *v, QSP_CHAR op)
 {
 	QSPVariant v2;
 	QSP_BOOL isSingleValue, notFirstValue = QSP_FALSE;
-	QSP_CHAR *newValPos, *newCommaPos, *valPos, *commaPos = name;
+	QSP_CHAR *newValPos, *newCommaPos, *valPos = 0, *commaPos = name;
 	int oldRefreshCount = qspRefreshCount;
 	if (v->IsStr)
 	{

@@ -594,7 +594,7 @@ static QSP_BOOL qspExecSinglelineCode(QSPLineOfCode *s, int endLine, int codeOff
 static QSP_BOOL qspExecCode(QSPLineOfCode *s, int startLine, int endLine, int codeOffset, QSP_CHAR **jumpTo)
 {
 	QSPLineOfCode *line;
-	QSP_CHAR *jumpToFake;
+	QSP_CHAR *jumpToFake = 0;
 	QSP_BOOL uLevel, isExit = QSP_FALSE;
 	int i, oldRefreshCount, action = qspFlowExecute;
 	oldRefreshCount = qspRefreshCount;
@@ -702,7 +702,7 @@ static QSP_BOOL qspExecStringWithLocals(QSPLineOfCode *s, int startStat, int end
 QSP_BOOL qspExecTopCodeWithLocals(QSPLineOfCode *s, int endLine, int codeOffset, QSP_BOOL isNewLoc)
 {
 	QSP_BOOL isExit;
-	QSPVar *savedVars;
+	QSPVar *savedVars = 0;
 	QSPVarsGroup *savedGroups;
 	int oldRefreshCount, varsCount, groupsCount;
 	if (isNewLoc)
@@ -805,7 +805,7 @@ void qspInitLineOfCode(QSPLineOfCode *line, QSP_CHAR *str, int lineNum)
 {
 	QSP_BOOL isInLoop, isSearchElse;
 	int statCode, count = 0;
-	QSP_CHAR *uStr, *nextPos, *temp, *buf, *elsePos, *delimPos = 0, *paramPos = 0;
+	QSP_CHAR *uStr, *nextPos = 0, *temp, *buf, *elsePos, *delimPos = 0, *paramPos = 0;
 	line->Str = str;
 	line->LineNum = lineNum;
 	line->StatsCount = 0;
